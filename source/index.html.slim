@@ -1,0 +1,25 @@
+header.intro-header style="background-image: url('images/home-bg.jpg')"
+  .container
+    .row
+      .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+        .site-heading
+          h1
+            | GQLi Demo
+          hr.small
+            span.subheading
+              | Demo showcasing GQLi
+
+.container
+  .row
+    .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+      - repositories.reverse_each do |repo|
+        - details = repository_details(repo.owner, repo.name)
+        .post-preview
+          a href=details.url
+            h2.post-title
+              = "#{repo.owner}/#{repo.name}"
+            - if details.description?
+            small
+              = details.description
+          p.post-meta = "Forks: #{details.forkCount} - Stars: #{details.stargazers.totalCount}"
+        hr
